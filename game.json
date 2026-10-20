@@ -1,0 +1,16 @@
+{
+  "seed": 536, "rounds": 6, "round_seconds": 60,
+  "districts": [
+    {"id": "northbank", "name": "Northbank", "citizens": 50, "character": [0.4, 0.0, 0.6]},
+    {"id": "riverside", "name": "Riverside", "citizens": 50, "character": [-0.4, 0.3, 0.0]},
+    {"id": "midtown",   "name": "Midtown",   "citizens": 50, "character": [0.0, 0.0, 0.0]},
+    {"id": "hillcrest", "name": "Hillcrest", "citizens": 50, "character": [0.1, 0.6, -0.2]},
+    {"id": "southgate", "name": "Southgate", "citizens": 50, "character": [-0.2, -0.3, 0.3]}
+  ],
+  "seats": [
+    {"seat": 1, "user": "cand1", "name": "Ada", "archetype": "Visionary", "stance": [0.5, 0.0, 0.8],  "is_bot": false},
+    {"seat": 2, "user": "cand2", "name": "Bo",  "archetype": "Firebrand", "stance": [-0.6, 0.4, 0.0], "is_bot": false},
+    {"seat": 3, "user": "cand3", "name": "Cy",  "archetype": "Crusader",  "stance": [0.2, 0.8, -0.3], "is_bot": true},
+    {"seat": 4, "user": "cand4", "name": "Dee", "archetype": "Veteran",   "stance": [-0.2, -0.4, 0.4], "is_bot": true}
+  ]
+}
