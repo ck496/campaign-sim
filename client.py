@@ -526,7 +526,7 @@ async def run_human_session(
 
     async def input_reader() -> None:
         nonlocal done
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         while not done:
             try:
                 line = await loop.run_in_executor(
@@ -569,15 +569,13 @@ def main() -> None:
     parser.add_argument("--config", default="game.json")
     args = parser.parse_args()
 
-    loop = asyncio.get_event_loop()
-    if args.bot:
-        loop.run_until_complete(
-            run_bot_session(args.sock, args.name, args.config),
-        )
-    else:
-        loop.run_until_complete(
-            run_human_session(args.sock, args.name, args.config),
-        )
+    try:
+        if args.bot:
+            asyncio.run(run_bot_session(args.sock, args.name, args.config))
+        else:
+            asyncio.run(run_human_session(args.sock, args.name, args.config))
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
