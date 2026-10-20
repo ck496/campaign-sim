@@ -568,16 +568,21 @@ def main() -> None:
         args.sock = "./run/game.sock"
     os.makedirs(os.path.dirname(args.sock) or ".", exist_ok=True)
     gs = GameServer(args.config, args.auth, args.sock)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(gs.run())
-    print(f"Server listening on {args.sock} (auth={gs.auth_mode})")
+
+    async def _serve() -> None:
+        await gs.run()
+        print(f"Server listening on {args.sock} (auth={gs.auth_mode})")
+        try:
+            await asyncio.Event().wait()
+        except asyncio.CancelledError:
+            pass
+        finally:
+            gs.stop()
+
     try:
-        loop.run_forever()
+        asyncio.run(_serve())
     except KeyboardInterrupt:
         pass
-    finally:
-        gs.stop()
-        loop.close()
 
 
 if __name__ == "__main__":
