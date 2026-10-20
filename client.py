@@ -569,10 +569,13 @@ def main() -> None:
     parser.add_argument("--config", default="game.json")
     args = parser.parse_args()
 
-    if args.bot:
-        asyncio.run(run_bot_session(args.sock, args.name, args.config))
-    else:
-        asyncio.run(run_human_session(args.sock, args.name, args.config))
+    try:
+        if args.bot:
+            asyncio.run(run_bot_session(args.sock, args.name, args.config))
+        else:
+            asyncio.run(run_human_session(args.sock, args.name, args.config))
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
