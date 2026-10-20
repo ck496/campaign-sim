@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+run/
+.claude/
+docs/
+plan/
+submit/
+tests/
+# 
+# 
+*.sock
+*.log
+.env
+.venv/
+venv/
